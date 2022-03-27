@@ -1,0 +1,63 @@
+<br />
+<div class="container">
+  <div class="row">
+    <span class="p-float-label">
+      <input id="float-input" type="text" pInputText [(ngModel)]="name" />
+      <label for="float-input">Username</label>
+    </span>
+  </div>
+  <br>
+  <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary" (click)="saludar()">Bootstrap</button>
+      </div>
+      <div class="col-md-6">
+        <button pButton type="button" label="Prime NG" class="p-button-warning" (click)="saludar()"></button>
+      </div>
+  </div>
+  
+  <div class="row">
+      <p>{{ name }}</p>
+  </div>
+  <br>
+  <div class="row">
+    {{ saludo }}
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>DNI</th>
+          <th>NOMBRE</th>
+          <th>PRIMER APELLIDO</th>
+          <th>SEGUNDO APELLIDO</th>
+          <th>CLASE VIA</th>
+          <th>NOMBRE VIA</th>
+          <th>NUMERO VIA</th>
+          <th>CÓDIGO POSTAL</th>
+          <th>CIUDAD</th>
+          <th>TELEFONO</th>
+          <th>OBSERVACIÓN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.dniCl }}</td>
+          <td>{{ cliente.nombreCl }}</td>
+          <td>{{ cliente.apellido1 }}</td>
+          <td>{{ cliente.apellido2 }}</td>
+          <td>{{ cliente.claseVia }}</td>
+          <td>{{ cliente.nombreVia }}</td>
+          <td>{{ cliente.numeroVia }}</td>
+          <td>{{ cliente.codPostal }}</td>
+          <td>{{ cliente.ciudad }}</td>
+          <td>{{ cliente.telefono }}</td>
+          <td>{{ cliente.observacion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
