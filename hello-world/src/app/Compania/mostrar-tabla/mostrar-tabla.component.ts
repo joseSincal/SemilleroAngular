@@ -8,6 +8,8 @@ import { CompaniaService } from 'src/app/servicios/compania/compania.service';
 })
 export class MostrarTablaComponent implements OnInit {
   companias: any = [];
+  first = 0;
+  rows = 6;
 
   constructor(private servicioCompania: CompaniaService) {}
 
@@ -23,5 +25,27 @@ export class MostrarTablaComponent implements OnInit {
 
   mostrarCompanias(companias: any) {
     this.companias = companias;
+  }
+
+  next() {
+    this.first = this.first + this.rows;
+  }
+
+  prev() {
+    this.first = this.first - this.rows;
+  }
+
+  reset() {
+    this.first = 0;
+  }
+
+  isLastPage(): boolean {
+    return this.companias
+      ? this.first === this.companias.length - this.rows
+      : true;
+  }
+
+  isFirstPage(): boolean {
+    return this.companias ? this.first === 0 : true;
   }
 }
