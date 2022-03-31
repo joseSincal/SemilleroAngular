@@ -1,0 +1,29 @@
+<div class="container">
+
+  <h1 class="text-center">Companias</h1>
+
+    <div class="row">
+      <p-table [value]="companias" selectionMode="single" responsiveLayout="scroll" [scrollable]="true" scrollHeight="496px">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>NOMBRE</th>
+            <th>CLASE VIA</th>
+            <th>NUMERO VIA</th>
+            <th>CÓDIGO POSTAL</th>
+            <th>TELEFONO CONTRATACIÓN</th>
+            <th>TELEFONO SINIESTRO</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-compania>
+          <tr>
+            <td>{{ compania.nombreCompania }}</td>
+            <td>{{ compania.claseVia }}</td>
+            <td>{{ compania.numeroVia }}</td>
+            <td>{{ compania.codPostal }}</td>
+            <td>{{ compania.telefonoContratacion }}</td>
+            <td>{{ compania.telefonoSiniestro }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>

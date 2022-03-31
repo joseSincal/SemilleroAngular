@@ -6,7 +6,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClienteService {
+export class CompaniaService {
 
   constructor(private http:HttpClient) { }
 
@@ -16,28 +16,27 @@ export class ClienteService {
     );
   }
 
-  private consumirPost(url:string, parametro:any):Observable<any> {
+  private consumirPost(url:string, pametro:any):Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     }
-    return this.http.post<any>(environment.urlService + url, parametro, httpOptions).pipe(
+    return this.http.post<any>(environment.urlService + url, pametro, httpOptions).pipe(
       catchError(e => this.manejarError(e))
     );
   }
 
   private manejarError(error:any) {
-    return throwError(() => `Hubo un error: ${error}`);
+    return throwError(() => `hubo un error: ${error}`);
   }
 
-  buscarClientes() {
-    return this.consumirGet("cliente/buscar");
+  buscarCompanias() {
+    return this.consumirGet("compania/buscar")
   }
 
-  guardaCliente(cliente:any) {
-    return this.consumirPost("cliente/guardar", cliente)
+  guardarCompania(compania:any) {
+    return this.consumirPost("compania/guardar", compania)
   }
-
 
 }
