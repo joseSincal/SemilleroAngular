@@ -39,5 +39,9 @@ export class ClienteService {
     return this.consumirPost("cliente/guardar", cliente)
   }
 
+  obtenerPagina(pagina?: number, cantidad?: number) {
+    return this.consumirGet(`cliente/buscar/Pageable/${pagina}/${cantidad}`);
+  }
+
 
 }

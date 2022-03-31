@@ -5,12 +5,12 @@
     <p-table
       [value]="clientes"
       selectionMode="single"
+      [lazy]="true"
+      (onLazyLoad)="loadCustomers($event)"
       [paginator]="true"
       [rows]="6"
-      [showCurrentPageReport]="true"
-      responsiveLayout="scroll"
-      currentPageReportTemplate="{first} a {last} de {totalRecords} Clientes"
-      [rowsPerPageOptions]="[3,6,10,15]"
+      [totalRecords]="totalRecords"
+      [loading]="loading"
     >
       <ng-template pTemplate="header">
         <tr>

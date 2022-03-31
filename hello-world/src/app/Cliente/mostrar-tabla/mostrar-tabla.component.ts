@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LazyLoadEvent } from 'primeng/api';
 import { ClienteService } from 'src/app/servicios/cliente/cliente.service';
 
 @Component({
@@ -8,13 +9,18 @@ import { ClienteService } from 'src/app/servicios/cliente/cliente.service';
 })
 export class MostrarTablaComponent implements OnInit {
   clientes: any = [];
-  first = 0;
-  rows = 6;
+
+  virtualDatabase: any = [];
+
+  totalRecords: number = 0;
+
+  loading: boolean = false;
 
   constructor(private servicioCliente: ClienteService) {}
 
   ngOnInit(): void {
-    this.obtenerClientes();
+    //this.obtenerClientes();
+    this.loading = true;
   }
 
   obtenerClientes() {
@@ -27,25 +33,21 @@ export class MostrarTablaComponent implements OnInit {
     this.clientes = clientes;
   }
 
-  next() {
-    this.first = this.first + this.rows;
-  }
+  loadCustomers(event: LazyLoadEvent) {
+    this.loading = true;
 
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
-  reset() {
-    this.first = 0;
-  }
-
-  isLastPage(): boolean {
-    return this.clientes
-      ? this.first === this.clientes.length - this.rows
-      : true;
-  }
-
-  isFirstPage(): boolean {
-    return this.clientes ? this.first === 0 : true;
+    setTimeout(() => {
+      console.log(event);
+      let first: any = event.first
+      let rows: any = event.rows
+      let page: any = first / rows;
+      this.servicioCliente
+        .obtenerPagina(page, event.rows)
+        .subscribe((response: any) => {
+          this.mostrarClientes(response.content);
+          this.totalRecords = response.totalElements;
+        });
+      this.loading = false;
+    }, 1000);
   }
 }
