@@ -37,7 +37,6 @@ export class MostrarTablaComponent implements OnInit {
     this.loading = true;
 
     setTimeout(() => {
-      console.log(event);
       let first: any = event.first
       let rows: any = event.rows
       let page: any = first / rows;
