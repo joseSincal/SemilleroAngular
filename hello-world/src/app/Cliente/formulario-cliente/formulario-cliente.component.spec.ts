@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MostrarTablaComponent } from './mostrar-tabla.component';
+import { FormularioClienteComponent } from './formulario-cliente.component';
 
-describe('MostrarTablaComponent', () => {
-  let component: MostrarTablaComponent;
-  let fixture: ComponentFixture<MostrarTablaComponent>;
+describe('FormularioClienteComponent', () => {
+  let component: FormularioClienteComponent;
+  let fixture: ComponentFixture<FormularioClienteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MostrarTablaComponent ]
+      declarations: [ FormularioClienteComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MostrarTablaComponent);
+    fixture = TestBed.createComponent(FormularioClienteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

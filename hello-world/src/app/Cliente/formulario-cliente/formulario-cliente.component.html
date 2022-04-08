@@ -1,18 +1,28 @@
 <div class="container">
-  
+  <p-toast></p-toast>
   <div class="row">
     <div class="col-md-9">
-      <h1>Formulario cliente</h1>
+      <h1>Cliente</h1>
     </div>
-    <div class="col-md-3 align-self-end">
+    <div class="col-md-3 align-self-end" *ngIf="add || edit">
       <h6 class="float-end text-danger">* datos obligatorios</h6>
+    </div>
+    <div class="col-md-3" *ngIf="!add && !edit">
+      <button
+        pButton
+        pRipple
+        class="float-end p-button-rounded p-button-text p-button-plain p-button-sm"
+        label="Agregar"
+        icon="pi pi-plus"
+        (click)="mostrarFormulario()"
+      ></button>
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" *ngIf="add || edit">
     <div class="card-body px-5">
       <form id="formularioCliente">
-        <div class="row gy-2">
+        <div class="row gy-1">
           <legend>Datos del cliente</legend>
           <div class="col-md-4">
             <div class="form-floating">
@@ -51,7 +61,7 @@
           </div>
         </div>
         <br />
-        <div class="row gy-2">
+        <div class="row gy-1">
           <legend>Datos de Vía</legend>
           <div class="col-md-4">
             <div class="form-floating">
@@ -90,7 +100,7 @@
           </div>
         </div>
         <br />
-        <div class="row gy-2">
+        <div class="row gy-1">
           <legend>Otros datos</legend>
           <div class="col-md-4">
             <div class="form-floating">
@@ -145,16 +155,18 @@
       <br />
       <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
-          <button 
-            pButton 
-            icon="pi pi-check" iconPos="right"
+          <button
+            pButton
+            icon="pi pi-check"
+            iconPos="right"
             label="Guardar"
             class="p-button-rounded p-button-success"
             (click)="enviarCliente()"
-          >
-          </button>
+          ></button>
         </div>
       </div>
     </div>
   </div>
+
+  <app-tabla-cliente *ngIf="!add && !edit"></app-tabla-cliente>
 </div>

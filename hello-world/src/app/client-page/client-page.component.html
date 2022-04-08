@@ -1,0 +1,66 @@
+<div class="container">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+        <h3 class="fw-light">Clientes</h3>
+    </ng-template>
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-success mr-2 p-button-sm"></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+    [value]="clientes"
+    styleClass="p-datatable-sm"
+    responsiveLayout="scroll"
+    [lazy]="true"
+    (onLazyLoad)="loadCustomers($event)"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
+    currentPageReportTemplate="{first} a {last} de {totalRecords} Clientes"
+    [rowsPerPageOptions]="[5, 10, 15]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>DNI</th>
+        <th>NOMBRE</th>
+        <th>PRIMER APELLIDO</th>
+        <th>SEGUNDO APELLIDO</th>
+        <th>CÓDIGO POSTAL</th>
+        <th>CIUDAD</th>
+        <th>TELEFONO</th>
+        <th colspan="2"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente>
+      <tr>
+        <td>{{ cliente.dniCl }}</td>
+        <td>{{ cliente.nombreCl }}</td>
+        <td>{{ cliente.apellido1 }}</td>
+        <td>{{ cliente.apellido2 }}</td>
+        <td>{{ cliente.codPostal }}</td>
+        <td>{{ cliente.ciudad }}</td>
+        <td>{{ cliente.telefono }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-text"
+          ></button>
+        </td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger p-button-text"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>

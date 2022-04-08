@@ -3,23 +3,19 @@ import { LazyLoadEvent } from 'primeng/api';
 import { ClienteService } from 'src/app/servicios/cliente/cliente.service';
 
 @Component({
-  selector: 'app-mostrar-tabla',
-  templateUrl: './mostrar-tabla.component.html',
-  styleUrls: ['./mostrar-tabla.component.css'],
+  selector: 'app-client-page',
+  templateUrl: './client-page.component.html',
+  styleUrls: ['./client-page.component.css']
 })
-export class MostrarTablaComponent implements OnInit {
+export class ClientPageComponent implements OnInit {
   clientes: any = [];
-
   virtualDatabase: any = [];
-
   totalRecords: number = 0;
-
   loading: boolean = false;
 
-  constructor(private servicioCliente: ClienteService) {}
+  constructor(private servicioCliente: ClienteService) { }
 
   ngOnInit(): void {
-    //this.obtenerClientes();
     this.loading = true;
   }
 
@@ -37,8 +33,8 @@ export class MostrarTablaComponent implements OnInit {
     this.loading = true;
 
     setTimeout(() => {
-      let first: any = event.first
-      let rows: any = event.rows
+      let first: any = event.first;
+      let rows: any = event.rows;
       let page: any = first / rows;
       this.servicioCliente
         .obtenerPagina(page, event.rows)
@@ -49,4 +45,5 @@ export class MostrarTablaComponent implements OnInit {
       this.loading = false;
     }, 1000);
   }
+
 }

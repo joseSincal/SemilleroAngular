@@ -11,15 +11,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 
 import { WelcomeComponent } from './welcome/welcome.component';
-import { AgregarComponent as AddClient } from './Cliente/agregar/agregar.component';
-import { MostrarTablaComponent as ViewClient } from './Cliente/mostrar-tabla/mostrar-tabla.component';
-import { AgregarComponent as AddCompany } from './Compania/agregar/agregar.component';
-import { MostrarTablaComponent as ViewCompany } from './Compania/mostrar-tabla/mostrar-tabla.component';
+import { ClientPageComponent } from './client-page/client-page.component';
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, AddClient, ViewClient, AddCompany, ViewCompany],
+  declarations: [AppComponent, WelcomeComponent, ClientPageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -29,6 +28,8 @@ import { MostrarTablaComponent as ViewCompany } from './Compania/mostrar-tabla/m
     InputNumberModule,
     ButtonModule,
     TableModule,
+    ToastModule,
+    ToolbarModule,
     HttpClientModule,
   ],
   providers: [],
