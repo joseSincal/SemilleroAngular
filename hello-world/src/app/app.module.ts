@@ -13,6 +13,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ClientPageComponent } from './client-page/client-page.component';
@@ -30,6 +32,8 @@ import { ClientPageComponent } from './client-page/client-page.component';
     TableModule,
     ToastModule,
     ToolbarModule,
+    DialogModule,
+    ConfirmDialogModule,
     HttpClientModule,
   ],
   providers: [],

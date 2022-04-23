@@ -25,6 +25,9 @@ export class ClienteService {
       .post<any>(environment.urlService + url, parametro, httpOptions)
       .pipe(catchError((e) => this.manejarError(e)));
   }
+   private consumirDelete(url: string): Observable<any> {
+     return this.http.delete<any>(environment.urlService + url).pipe(catchError((e) => this.manejarError(e)));
+   }
 
   private manejarError(error: any) {
     return throwError(() => `Hubo un error: ${error}`);
@@ -39,10 +42,14 @@ export class ClienteService {
   }
 
   obtenerPagina(pagina?: number, cantidad?: number) {
-    return this.consumirGet(`cliente/buscar/Pageable/${pagina}/${cantidad}`);
+    return this.consumirGet(`cliente/buscar/paginacion/${pagina}/${cantidad}`);
   }
 
   buscarCliente(dniCl: number) {
     return this.consumirGet(`cliente/obtener/${dniCl}`);
+  }
+
+  eliminarCliente(dni: number) {
+    return this.consumirDelete(`cliente/eliminar/${dni}`);
   }
 }
