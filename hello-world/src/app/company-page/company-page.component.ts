@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { CompaniaService } from 'src/app/servicios/compania/compania.service';
 import { LazyLoadEvent } from 'primeng/api';
-import { ClienteService } from 'src/app/servicios/cliente/cliente.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-client-page',
-  templateUrl: './client-page.component.html',
-  styleUrls: ['./client-page.component.css'],
+  selector: 'app-company-page',
+  templateUrl: './company-page.component.html',
+  styleUrls: ['./company-page.component.css'],
   providers: [MessageService, ConfirmationService],
 })
-export class ClientPageComponent implements OnInit {
-  clientes: any;
-  cliente: any = {};
+export class CompanyPageComponent implements OnInit {
+  companias: any;
+  compania: any = {};
   totalRecords: number;
   loading: boolean;
   evento: LazyLoadEvent;
@@ -20,7 +20,7 @@ export class ClientPageComponent implements OnInit {
   edit: boolean;
 
   constructor(
-    private servicioCliente: ClienteService,
+    private servicioCompania: CompaniaService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -29,11 +29,11 @@ export class ClientPageComponent implements OnInit {
     this.loading = true;
   }
 
-  mostrarClientes(clientes: any) {
-    this.clientes = clientes;
+  mostrarCompanias(companias: any) {
+    this.companias = companias;
   }
 
-  loadClientes(event: LazyLoadEvent) {
+  loadCompanias(event: LazyLoadEvent) {
     this.evento = event;
     this.actualizarDatos();
   }
@@ -44,10 +44,10 @@ export class ClientPageComponent implements OnInit {
       let first: any = this.evento.first;
       let rows: any = this.evento.rows;
       let page: any = first / rows;
-      this.servicioCliente
+      this.servicioCompania
         .obtenerPagina(page, this.evento.rows)
         .subscribe((response: any) => {
-          this.mostrarClientes(response.content);
+          this.mostrarCompanias(response.content);
           this.totalRecords = response.totalElements;
         });
       this.loading = false;
@@ -60,23 +60,23 @@ export class ClientPageComponent implements OnInit {
     this.actualizarDatos();
   }
 
-  enviarCliente() {
+  enviarCompania() {
     let formulario: any = document.getElementById('formulario');
     if (formulario.reportValidity()) {
-      this.servicioCliente
-        .guardaCliente(this.cliente)
+      this.servicioCompania
+        .guardaCompania(this.compania)
         .subscribe((response: any) => {
           this.finalizarGuardar(response);
         });
     }
   }
 
-  eliminarCliente(dni: number) {
+  eliminarCompania(nombre: string) {
     this.confirmationService.confirm({
-      message: `¿Deseas eliminar este cliente? No podrás deshacer esta acción`,
+      message: `¿Deseas eliminar esta Compania? No podrás deshacer esta acción`,
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.servicioCliente.eliminarCliente(dni).subscribe((response: any) => {
+        this.servicioCompania.eliminarComania(nombre).subscribe((response: any) => {
           this.finalizarEliminar(response);
         });
       },
@@ -84,31 +84,31 @@ export class ClientPageComponent implements OnInit {
   }
 
   finalizarGuardar(res: any) {
-    this.cliente = {};
+    this.compania = {};
     this.formDialog = false;
     this.actualizarDatos();
     this.edit
-      ? this.showToast('success', 'Datos del cliente editados correctamente')
+      ? this.showToast('success', 'Datos de la compania editados correctamente')
       : this.showToast(
           'success',
-          'Cliente creado y agregado a la base de datos'
+          'Compania creada y agregada a la base de datos'
         );
     this.edit = false;
   }
 
   finalizarEliminar(res: any) {
     this.actualizarDatos();
-    this.showToast('success', 'Cliente eliminado sin problemas');
+    this.showToast('success', 'Compania eliminada sin problemas');
   }
 
-  crearCliente() {
-    this.cliente = {};
+  crearCompania() {
+    this.compania = {};
     this.edit = false;
     this.formDialog = true;
   }
 
-  editarCliente(cliente: any) {
-    this.cliente = cliente;
+  editarCliente(compania: any) {
+    this.compania = compania;
     this.edit = true;
     this.formDialog = true;
   }

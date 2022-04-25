@@ -6,7 +6,7 @@ import { catchError, Observable, throwError } from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class CompaniaService {
+export class PeritoService {
 
   constructor(private http: HttpClient) { }
 
@@ -36,14 +36,14 @@ export class CompaniaService {
   }
 
   obtenerPagina(pagina?: number, cantidad?: number){
-    return this.consumirGet(`compania/buscar/paginacion/${pagina}/${cantidad}`);
+    return this.consumirGet(`perito/buscar/paginas/ordenado/${pagina}/${cantidad}`);
   }
 
-  guardaCompania(compania: any) {
-    return this.consumirPost('compania/guardar', compania);
+  guardaPerito(perito: any) {
+    return this.consumirPost('perito/guardar', perito);
   }
 
-  eliminarComania(nombreCompania: string) {
-    return this.consumirDelete(`compania/eliminar/${nombreCompania}`);
+  eliminarPerito(dniPerito: number) {
+    return this.consumirDelete(`perito/eliminar/${dniPerito}`);
   }
 }

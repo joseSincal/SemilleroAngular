@@ -18,9 +18,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ClientPageComponent } from './client-page/client-page.component';
+import { CompanyPageComponent } from './company-page/company-page.component';
+import { PeritoPageComponent } from './perito-page/perito-page.component';
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, ClientPageComponent],
+  declarations: [AppComponent, WelcomeComponent, ClientPageComponent, CompanyPageComponent, PeritoPageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
