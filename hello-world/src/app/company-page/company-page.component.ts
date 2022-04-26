@@ -73,12 +73,14 @@ export class CompanyPageComponent implements OnInit {
 
   eliminarCompania(nombre: string) {
     this.confirmationService.confirm({
-      message: `¿Deseas eliminar esta Compania? No podrás deshacer esta acción`,
+      message: `¿Deseas eliminar esta compania? No podrás deshacer esta acción`,
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.servicioCompania.eliminarComania(nombre).subscribe((response: any) => {
-          this.finalizarEliminar(response);
-        });
+        this.servicioCompania
+          .eliminarComania(nombre)
+          .subscribe((response: any) => {
+            this.finalizarEliminar(response);
+          });
       },
     });
   }

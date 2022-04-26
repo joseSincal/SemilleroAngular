@@ -15,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ClientPageComponent } from './client-page/client-page.component';
@@ -22,7 +23,13 @@ import { CompanyPageComponent } from './company-page/company-page.component';
 import { PeritoPageComponent } from './perito-page/perito-page.component';
 
 @NgModule({
-  declarations: [AppComponent, WelcomeComponent, ClientPageComponent, CompanyPageComponent, PeritoPageComponent],
+  declarations: [
+    AppComponent,
+    WelcomeComponent,
+    ClientPageComponent,
+    CompanyPageComponent,
+    PeritoPageComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -36,6 +43,7 @@ import { PeritoPageComponent } from './perito-page/perito-page.component';
     ToolbarModule,
     DialogModule,
     ConfirmDialogModule,
+    KeyFilterModule,
     HttpClientModule,
   ],
   providers: [],
