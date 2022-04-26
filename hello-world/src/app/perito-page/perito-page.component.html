@@ -91,7 +91,7 @@
           <div class="form-floating">
             <input
               *ngIf="edit; else habilitado"
-              type="text"
+              type="number"
               pInputText
               class="form-control"
               [ngModelOptions]="{ standalone: true }"
@@ -101,7 +101,7 @@
             />
             <ng-template #habilitado>
               <input
-                type="text"
+                type="number"
                 pInputText
                 class="form-control"
                 [ngModelOptions]="{ standalone: true }"

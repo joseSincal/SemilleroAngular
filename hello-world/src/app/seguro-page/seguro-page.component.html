@@ -1,0 +1,236 @@
+<p-toast></p-toast>
+
+<div class="container">
+  <p-toolbar styleClass="mb-4">
+    <ng-template pTemplate="left">
+      <h3 class="fw-light">Seguros</h3>
+    </ng-template>
+    <ng-template pTemplate="right">
+      <button
+        pButton
+        pRipple
+        label="Agregar"
+        icon="pi pi-plus"
+        class="p-button-success mr-2 p-button-sm"
+        (click)="crearSeguro()"
+      ></button>
+    </ng-template>
+  </p-toolbar>
+
+  <p-table
+    [value]="seguros"
+    styleClass="p-datatable-sm"
+    responsiveLayout="scroll"
+    [lazy]="true"
+    (onLazyLoad)="loadSeguros($event)"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
+    currentPageReportTemplate="{first} a {last} de {totalRecords} Seguros"
+    [rowsPerPageOptions]="[5, 10, 15]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th># POLIZA</th>
+        <th>RAMO</th>
+        <th>INICIO</th>
+        <th>VENCIMIENTO</th>
+        <th>DNI CLIENTE</th>
+        <th colspan="2"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-seguro>
+      <tr>
+        <td>{{ seguro.numeroPoliza }}</td>
+        <td>{{ seguro.ramo }}</td>
+        <td>{{ seguro.fechaInicio }}</td>
+        <td>{{ seguro.fechaVencimiento }}</td>
+        <td>{{ seguro.dniCl }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-text"
+            (click)="editarSeguro(seguro)"
+          ></button>
+        </td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger p-button-text"
+            (click)="eliminarSeguro(seguro.numeroPoliza)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  [(visible)]="formDialog"
+  [style]="{ width: '550px' }"
+  header="Detalle seguro"
+  [modal]="true"
+  styleClass="p-fluid"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <ng-template pTemplate="content">
+    <form id="formulario">
+      <div class="p-fluid row gy-4">
+        <div class="col-md-3">
+          <div class="form-floating">
+            <input
+              *ngIf="edit; else habilitado"
+              type="number"
+              pInputText
+              class="form-control"
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="seguro.numeroPoliza"
+              required
+              disabled
+            />
+            <ng-template #habilitado>
+              <input
+                type="number"
+                pInputText
+                class="form-control"
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="seguro.numeroPoliza"
+                required
+            /></ng-template>
+            <label>Póliza *</label>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="form-floating">
+            <input
+              type="text"
+              pInputText
+              class="form-control"
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="seguro.ramo"
+              required
+            />
+            <label>Ramo *</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>Fecha Inicio</label>
+          <p-inputMask
+            mask="99/99/9999"
+            [(ngModel)]="seguro.fechaInicio"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="dd/mm/yyyy"
+            [required]="true"
+          ></p-inputMask>
+        </div>
+        <div class="col-md-6">
+          <label>Fecha Vencimiento</label>
+          <p-inputMask
+            mask="99/99/9999"
+            [(ngModel)]="seguro.fechaVencimiento"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="dd/mm/yyyy"
+            [required]="true"
+          ></p-inputMask>
+        </div>
+      </div>
+      <div class="col-md-8 mt-4">
+        <div class="form-floating">
+          <input
+            *ngIf="edit; else habilitado2"
+            type="number"
+            pInputText
+            class="form-control"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="seguro.dniCl"
+            required
+            disabled
+          />
+          <ng-template #habilitado2>
+            <input
+              type="number"
+              pInputText
+              class="form-control"
+              [ngModelOptions]="{ standalone: true }"
+              [(ngModel)]="seguro.dniCl"
+              required
+          /></ng-template>
+          <label>DNI Cliente *</label>
+        </div>
+      </div>
+      <h5 class="mt-5">Condiciones Particulares</h5>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea
+            class="form-control"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="seguro.condicionesParticulares"
+          ></textarea>
+        </div>
+      </div>
+      <h5 class="mt-5">Observaciones</h5>
+      <div class="row">
+        <div class="col-md-12">
+          <textarea
+            class="form-control"
+            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="seguro.observaciones"
+          ></textarea>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-plain p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-success p-button-text"
+      (click)="enviarSeguro()"
+    ></button>
+  </ng-template>
+</p-dialog>
+
+<p-confirmDialog
+  #cd
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [style]="{ width: '50vw' }"
+>
+  <ng-template pTemplate="header">
+    <h3>¿Estás seguro?</h3>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="No"
+      icon="pi pi-times"
+      class="p-button-plain p-button-text"
+      (click)="cd.reject()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Sí"
+      icon="pi pi-trash"
+      class="p-button-danger"
+      (click)="cd.accept()"
+    ></button>
+  </ng-template>
+</p-confirmDialog>
