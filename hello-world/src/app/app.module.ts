@@ -15,7 +15,8 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import {InputMaskModule} from 'primeng/inputmask';
+import { InputMaskModule } from 'primeng/inputmask';
+import { CheckboxModule } from 'primeng/checkbox';
 import { KeyFilterModule } from 'primeng/keyfilter';
 
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -23,6 +24,7 @@ import { ClientPageComponent } from './client-page/client-page.component';
 import { CompanyPageComponent } from './company-page/company-page.component';
 import { PeritoPageComponent } from './perito-page/perito-page.component';
 import { SeguroPageComponent } from './seguro-page/seguro-page.component';
+import { SiniestroPageComponent } from './siniestro-page/siniestro-page.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { SeguroPageComponent } from './seguro-page/seguro-page.component';
     CompanyPageComponent,
     PeritoPageComponent,
     SeguroPageComponent,
+    SiniestroPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { SeguroPageComponent } from './seguro-page/seguro-page.component';
     DialogModule,
     ConfirmDialogModule,
     InputMaskModule,
+    CheckboxModule,
     KeyFilterModule,
     HttpClientModule,
   ],

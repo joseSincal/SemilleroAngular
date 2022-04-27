@@ -115,9 +115,9 @@ export class SeguroPageComponent implements OnInit {
 
   editarSeguro(seguro: any) {
     let part1 = seguro.fechaInicio.split('-');
-    seguro.fechaInicio = `${part1[2]}-${part1[1]}-${part1[0]}`;
+    seguro.fechaInicio = `${part1[2]}/${part1[1]}/${part1[0]}`;
     let part2 = seguro.fechaVencimiento.split('-');
-    seguro.fechaVencimiento = `${part2[2]}-${part2[1]}-${part2[0]}`;
+    seguro.fechaVencimiento = `${part2[2]}/${part2[1]}/${part2[0]}`;
     this.seguro = seguro;
     this.edit = true;
     this.formDialog = true;
