@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark px-3">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark px-3 mb-4">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">
       <img
@@ -6,43 +6,38 @@
         class="me-2"
         height="30"
         alt="nano"
-        loading="lazy"
       />
     </a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSemi">
+    <button
+      class="navbar-toggler"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSemi"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSemi">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" id="optionsClient" data-bs-toggle="dropdown">Cliente</a>
-            <ul class="dropdown-menu" aria-labelledby="optionsClient">
-              <li><a class="dropdown-item" routerLink="/cliente/add">Agregar</a></li>
-              <li><a class="dropdown-item" routerLink="/cliente">Ver todos</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" id="optionsCompany" data-bs-toggle="dropdown">Compania</a>
-            <ul class="dropdown-menu" aria-labelledby="optionsCompany">
-              <li><a class="dropdown-item" routerLink="/compania/add">Agregar</a></li>
-              <li><a class="dropdown-item" routerLink="/compania">Ver todos</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/perito">Peritos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/seguro">Seguros</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/siniestro">Siniestro</a>
-          </li>
-        </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/"><i class="pi pi-home me-2"></i>Home</a>
+        </li>
+        <li class="nav-item ms-2">
+          <a class="nav-link" routerLink="/cliente"><i class="pi pi-users me-2"></i>Clientes</a>
+        </li>
+        <li class="nav-item ms-2">
+          <a class="nav-link" routerLink="/compania"><i class="pi pi-building me-2"></i>Companias</a>
+        </li>
+        <li class="nav-item ms-2">
+          <a class="nav-link" routerLink="/perito"><i class="pi pi-flag-fill me-2"></i>Peritos</a>
+        </li>
+        <li class="nav-item ms-2">
+          <a class="nav-link" routerLink="/seguro"><i class="pi pi-shield me-2"></i>Seguros</a>
+        </li>
+        <li class="nav-item ms-2">
+          <a class="nav-link" routerLink="/siniestro"><i class="pi pi-exclamation-triangle
+            me-2"></i>Siniestro</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
 <router-outlet></router-outlet>
-

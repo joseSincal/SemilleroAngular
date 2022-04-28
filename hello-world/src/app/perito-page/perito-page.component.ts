@@ -3,6 +3,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { PeritoService } from 'src/app/servicios/perito/perito.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perito-page',
@@ -22,7 +23,8 @@ export class PeritoPageComponent implements OnInit {
   constructor(
     private servicioPerito: PeritoService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -119,6 +121,10 @@ export class PeritoPageComponent implements OnInit {
       summary: 'Proceso exitoso',
       detail: message,
     });
+  }
+
+  verSiniestros(dni: number) {
+    this.router.navigate([`/siniestro/${dni}`]);
   }
 
 }

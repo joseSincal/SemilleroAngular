@@ -25,6 +25,7 @@ import { CompanyPageComponent } from './company-page/company-page.component';
 import { PeritoPageComponent } from './perito-page/perito-page.component';
 import { SeguroPageComponent } from './seguro-page/seguro-page.component';
 import { SiniestroPageComponent } from './siniestro-page/siniestro-page.component';
+import { SiniestrosPorPeritoComponent } from './siniestros-por-perito/siniestros-por-perito.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SiniestroPageComponent } from './siniestro-page/siniestro-page.componen
     PeritoPageComponent,
     SeguroPageComponent,
     SiniestroPageComponent,
+    SiniestrosPorPeritoComponent,
   ],
   imports: [
     BrowserModule,

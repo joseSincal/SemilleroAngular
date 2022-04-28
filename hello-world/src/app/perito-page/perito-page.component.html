@@ -3,6 +3,7 @@
 <div class="container">
   <p-toolbar styleClass="mb-4">
     <ng-template pTemplate="left">
+      <i class="pi pi-flag me-3" style="font-size: 1.8rem"></i>
       <h3 class="fw-light">Peritos</h3>
     </ng-template>
     <ng-template pTemplate="right">
@@ -40,6 +41,7 @@
         <th>COMPANIA</th>
         <th>CIUDAD</th>
         <th>TEL. OFICINA</th>
+        <th>Siniestros</th>
         <th colspan="2"></th>
       </tr>
     </ng-template>
@@ -52,6 +54,15 @@
         <td>{{ perito.compania?.nombreCompania }}</td>
         <td>{{ perito.ciudad }}</td>
         <td>{{ perito.telefonoOficina }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-external-link"
+            class="p-button-rounded p-button-success p-button-text"
+            (click)="verSiniestros(perito.dniPerito)"
+          ></button>
+        </td>
         <td>
           <button
             pButton

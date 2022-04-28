@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { environment } from "src/environments/environment";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { catchError, Observable, throwError } from "rxjs";
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PeritoService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  private consumirGet(url: string){
-    return this.http.get<any>(environment.urlService + url).pipe(catchError((e) => this.manejarError(e)));
+  private consumirGet(url: string) {
+    return this.http
+      .get<any>(environment.urlService + url)
+      .pipe(catchError((e) => this.manejarError(e)));
   }
 
   private consumirPost(url: string, parametro: any): Observable<any> {
@@ -24,7 +25,7 @@ export class PeritoService {
       .post<any>(environment.urlService + url, parametro, httpOptions)
       .pipe(catchError((e) => this.manejarError(e)));
   }
-  
+
   private consumirDelete(url: string): Observable<any> {
     return this.http
       .delete<any>(environment.urlService + url)
@@ -35,8 +36,10 @@ export class PeritoService {
     return throwError(() => `Hubo un error: ${error}`);
   }
 
-  obtenerPagina(pagina?: number, cantidad?: number){
-    return this.consumirGet(`perito/buscar/paginas/ordenado/${pagina}/${cantidad}`);
+  obtenerPagina(pagina?: number, cantidad?: number) {
+    return this.consumirGet(
+      `perito/buscar/paginas/ordenado/${pagina}/${cantidad}`
+    );
   }
 
   guardaPerito(perito: any) {
@@ -45,5 +48,9 @@ export class PeritoService {
 
   eliminarPerito(dniPerito: number) {
     return this.consumirDelete(`perito/eliminar/${dniPerito}`);
+  }
+
+  obtenerSiniestros(dniPerito: number) {
+    return this.consumirGet(`perito/buscar/${dniPerito}/siniestro`);
   }
 }
