@@ -3,6 +3,7 @@ import { LazyLoadEvent } from 'primeng/api';
 import { ClienteService } from 'src/app/servicios/cliente/cliente.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-page',
@@ -22,7 +23,8 @@ export class ClientPageComponent implements OnInit {
   constructor(
     private servicioCliente: ClienteService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -119,5 +121,9 @@ export class ClientPageComponent implements OnInit {
       summary: 'Proceso exitoso',
       detail: message,
     });
+  }
+
+  verSeguros(dni: number) {
+    this.router.navigate([`/cliente/${dni}/seguros`]);
   }
 }

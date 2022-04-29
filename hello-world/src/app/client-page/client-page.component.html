@@ -41,6 +41,7 @@
         <th>CÓDIGO POSTAL</th>
         <th>CIUDAD</th>
         <th>TELEFONO</th>
+        <th>SEGUROS</th>
         <th colspan="2"></th>
       </tr>
     </ng-template>
@@ -53,6 +54,15 @@
         <td>{{ cliente.codPostal }}</td>
         <td>{{ cliente.ciudad }}</td>
         <td>{{ cliente.telefono }}</td>
+        <td>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-external-link"
+            class="p-button-rounded p-button-success p-button-text"
+            (click)="verSeguros(cliente.dniCl)"
+          ></button>
+        </td>
         <td>
           <button
             pButton
@@ -216,19 +226,49 @@
     </form>
   </ng-template>
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-plain p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-success p-button-text" (click)="enviarCliente()"></button>
-</ng-template>
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-plain p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-success p-button-text"
+      (click)="enviarCliente()"
+    ></button>
+  </ng-template>
 </p-dialog>
 
-
-
-<p-confirmDialog #cd [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+<p-confirmDialog
+  #cd
+  [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
+  [style]="{ width: '50vw' }"
+>
   <ng-template pTemplate="header">
-      <h3>¿Estás seguro?</h3>
+    <h3>¿Estás seguro?</h3>
   </ng-template>
   <ng-template pTemplate="footer">
-    <button pButton pRipple label="No" icon="pi pi-times" class="p-button-plain p-button-text" (click)="cd.reject()"></button>
-    <button pButton pRipple label="Sí" icon="pi pi-trash" class="p-button-danger" (click)="cd.accept()"></button>
+    <button
+      pButton
+      pRipple
+      label="No"
+      icon="pi pi-times"
+      class="p-button-plain p-button-text"
+      (click)="cd.reject()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Sí"
+      icon="pi pi-trash"
+      class="p-button-danger"
+      (click)="cd.accept()"
+    ></button>
   </ng-template>
 </p-confirmDialog>

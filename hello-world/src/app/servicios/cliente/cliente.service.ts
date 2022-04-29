@@ -25,7 +25,7 @@ export class ClienteService {
       .post<any>(environment.urlService + url, parametro, httpOptions)
       .pipe(catchError((e) => this.manejarError(e)));
   }
-  
+
   private consumirDelete(url: string): Observable<any> {
     return this.http
       .delete<any>(environment.urlService + url)

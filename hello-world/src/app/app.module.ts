@@ -17,6 +17,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputMaskModule } from 'primeng/inputmask';
 import { CheckboxModule } from 'primeng/checkbox';
+import {DropdownModule} from 'primeng/dropdown';
 import { KeyFilterModule } from 'primeng/keyfilter';
 
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -26,6 +27,8 @@ import { PeritoPageComponent } from './perito-page/perito-page.component';
 import { SeguroPageComponent } from './seguro-page/seguro-page.component';
 import { SiniestroPageComponent } from './siniestro-page/siniestro-page.component';
 import { SiniestrosPorPeritoComponent } from './siniestros-por-perito/siniestros-por-perito.component';
+import { CompaniaSeguroPageComponent } from './compania-seguro-page/compania-seguro-page.component';
+import { SegurosClientePageComponent } from './seguros-cliente-page/seguros-cliente-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { SiniestrosPorPeritoComponent } from './siniestros-por-perito/siniestros
     SeguroPageComponent,
     SiniestroPageComponent,
     SiniestrosPorPeritoComponent,
+    CompaniaSeguroPageComponent,
+    SegurosClientePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@ import { SiniestrosPorPeritoComponent } from './siniestros-por-perito/siniestros
     InputMaskModule,
     CheckboxModule,
     KeyFilterModule,
+    DropdownModule,
     HttpClientModule,
   ],
   providers: [],
